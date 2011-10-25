@@ -1,0 +1,5 @@
+Description:
+  Creates configuration initializer.
+
+Example:
+  "rails generate alloy:install"

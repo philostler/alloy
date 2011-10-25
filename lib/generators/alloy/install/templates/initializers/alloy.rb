@@ -1,0 +1,2 @@
+Alloy.config do
+end
