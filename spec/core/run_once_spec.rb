@@ -12,8 +12,8 @@ describe Alloy::Core::RunOnce do
       job_instance = job_clazz.new
       job_instance.should_receive(:execute).once
 
-      @model.should_receive(:limit).and_return 1
-      @model.should_receive(:create_job_instance).and_return job_instance
+      @model.should_receive(:get_limit).and_return 1
+      @model.should_receive(:create_job).and_return job_instance
 
       future = @model.run_once :queue, job_clazz
       future.get
@@ -21,7 +21,7 @@ describe Alloy::Core::RunOnce do
 
     context "when the specified job does not have a queue attribute" do
       it "should raise an argument error" do
-        expect { @model.run_once Test::Alloy::Job::Capability }.to raise_error ArgumentError, "job does not have a queue attribute defined"
+        expect { @model.run_once Test::Alloy::Job::Capability }.to raise_error NameError, "job class does not define a queue attribute and no was override specified"
       end
     end
   end
