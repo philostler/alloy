@@ -15,7 +15,8 @@ describe Alloy::Core::RunOnce do
       @model.should_receive(:limit).and_return 1
       @model.should_receive(:create_job_instance).and_return job_instance
 
-      @model.run_once :queue, job_clazz
+      future = @model.run_once :queue, job_clazz
+      future.get
     end
 
     context "when the specified job does not have a queue attribute" do
