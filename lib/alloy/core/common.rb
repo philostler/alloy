@@ -1,3 +1,5 @@
+require "active_support/duration"
+
 module Alloy
   module Core
     module Common
@@ -24,7 +26,7 @@ module Alloy
         job
       end
       def get_executor queue
-        @@executors[queue] = create_executor unless @@executors[queue]
+        @@executors[queue] = create_executor(get_limit queue) unless @@executors[queue]
 
         @@executors[queue]
       end
