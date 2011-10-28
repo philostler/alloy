@@ -10,6 +10,7 @@ Test::Alloy::Core::Limit.send :extend, Alloy::Core::Limit
 
 # Test::Alloy::Core::RunOnce
 Test::Alloy::Core.const_set("RunOnce", Class.new)
+Test::Alloy::Core::RunOnce.send :extend, Alloy::Core::Common
 Test::Alloy::Core::RunOnce.send :extend, Alloy::Core::RunOnce
 
 # Test::Alloy::Job
