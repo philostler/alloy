@@ -1,3 +1,4 @@
+require "active_support/basic_object"
 require "active_support/duration"
 
 module Alloy
