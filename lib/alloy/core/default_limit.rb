@@ -5,7 +5,7 @@ module Alloy
 
       def default_limit limit = nil
         if limit
-          set_default_limit limit.to_i
+          set_default_limit limit
         else
           get_default_limit
         end
