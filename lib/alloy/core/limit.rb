@@ -1,11 +1,11 @@
 module Alloy
   module Core
     module Limit
-      @@limits = Hash.new 10
+      @@limits = {}
 
       def limit queue, limit = nil
         if limit
-          set_limit queue, limit.to_i
+          set_limit queue, limit
         else
           get_limit queue
         end
@@ -13,10 +13,10 @@ module Alloy
 
       private
       def get_limit queue
-        @@limits[queue] if @@limits.has_key? queue
+        if @@limits.has_key? queue then @@limits[queue] else default_limit end
       end
       def set_limit queue, limit
-        raise ArgumentError, "limit cannot be less than 1" if limit.to_i < 1 unless limit.nil?
+        raise ArgumentError, "limit cannot be less than 1" if limit.to_i < 1
 
         @@limits[queue] = limit.to_i
       end

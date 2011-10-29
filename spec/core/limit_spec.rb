@@ -6,25 +6,30 @@ describe Alloy::Core::Limit do
   it { @model.should allow_public_access_for_methods :limit }
 
   describe ".limit" do
-    it "should return the specified queue limit" do
-      @model.limit example.description, 7
+    context "when the specified queue's limit has been set" do
+      it "should return the specified queue's limit" do
+        @model.limit example.description, 7
 
-      @model.limit(example.description).should be 7
+        @model.limit(example.description).should be 7
+      end
     end
 
-    it "should return nil if the queue does not exist" do
-      @model.limit(nil).should be_nil
+    context "when the specified queue's limit has not been set" do
+      it "should return the default queue limit" do
+        default_limit = @model.default_limit
+
+        @model.limit(example.description).should be default_limit
+      end
     end
 
     context "when a limit is specified" do
-      it "should set the specified queue limit" do
-        @model.limit example.description, 10
+      it "should set the specified queue's limit" do
+        @model.limit example.description, 7
 
-        @model.limit(example.description).should be 10
+        @model.limit(example.description).should be 7
       end
-
-      it "should return the new limit" do
-        @model.limit(example.description, 10).should be 10
+      it "should return the specified queue's new limit" do
+        @model.limit(example.description, 7).should be 7
       end
 
       context "when limit is less than one" do
