@@ -4,12 +4,13 @@ Object.const_set("Test", Class.new).const_set("Alloy", Class.new)
 # Test::Alloy::Core
 Test::Alloy.const_set("Core", Class.new)
 
-# Test::Alloy::Core::Common
-Test::Alloy::Core.const_set("Common", Class.new)
-Test::Alloy::Core::Common.send :extend, Alloy::Core::Common
+# Test::Alloy::Core::DefaultLimit
+Test::Alloy::Core.const_set("DefaultLimit", Class.new)
+Test::Alloy::Core::DefaultLimit.send :extend, Alloy::Core::DefaultLimit
 
 # Test::Alloy::Core::Limit
 Test::Alloy::Core.const_set("Limit", Class.new)
+Test::Alloy::Core::Limit.send :extend, Alloy::Core::DefaultLimit
 Test::Alloy::Core::Limit.send :extend, Alloy::Core::Limit
 
 # Test::Alloy::Core::RunOnce
