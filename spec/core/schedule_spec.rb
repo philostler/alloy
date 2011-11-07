@@ -33,5 +33,43 @@ describe Alloy::Core::Schedule do
 
       job.thread.id.should_not be this_thread.id
     end
+    it "should execute the specified job once within the 'in' duration" do
+      job.should_receive(:execute).at_most(1).times
+
+      subject.should_receive(:create_job).once.and_return job
+
+      subject.schedule(clazz).in(1).every 60
+
+      sleep 2
+    end
+    it "should execute the specified job once within the 'every' duration" do
+      job.should_receive(:execute).at_most(2).times
+
+      subject.should_receive(:create_job).once.and_return job
+
+      subject.schedule(clazz).every 2
+
+      sleep 3
+    end
+
+    context "when an 'in' duration is not specified" do
+      it "should execute the specified job immediately" do
+        job.should_receive(:execute).at_most(2).times
+
+        subject.should_receive(:create_job).once.and_return job
+
+        subject.schedule(clazz).every 10
+
+        sleep 1
+      end
+    end
+
+    context "when an 'every' duration is not specified" do
+      it "should not execute the specified job" do
+        job.should_not_receive :execute
+
+        subject.schedule(clazz).in 1
+      end
+    end
   end
 end
