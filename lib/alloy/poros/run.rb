@@ -9,9 +9,6 @@ module Alloy
       def now
         @callback.call self
       end
-      def clazz
-        @clazz
-      end
     end
   end
 end

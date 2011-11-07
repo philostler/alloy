@@ -6,9 +6,6 @@ module Alloy
         @callback = callback
       end
 
-      def clazz
-        @clazz
-      end
       def every duration
         @every = duration
         @callback.call self

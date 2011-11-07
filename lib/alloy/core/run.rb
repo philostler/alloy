@@ -8,9 +8,10 @@ module Alloy
       private
       def run_callback poro
         begin
-          queue = get_queue poro.clazz
+          clazz = poro.instance_variable_get(:@clazz)
+          queue = get_queue clazz
           executor = get_executor(queue)
-          job = create_job poro.clazz
+          job = create_job clazz
 
           execute_upon executor, job
         rescue Exception => error
