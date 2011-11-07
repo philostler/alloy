@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
             Dir["Gemfile"] +
             Dir["LICENSE"] +
             Dir["Rakefile"] +
+            Dir["README.markdown"] +
             Dir["**/*.rb"]
   s.require_paths = ["lib"]
 
