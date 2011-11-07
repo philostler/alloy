@@ -63,12 +63,22 @@ describe Alloy::Core::Schedule do
         sleep 1
       end
     end
+    context "when an 'in' duration is less than one" do
+      it "should raise an argument error" do
+        expect { subject.schedule(clazz).in(0).every 1 }.to raise_error ArgumentError, "an 'in' duration cannot be less than 1"
+      end
+    end
 
     context "when an 'every' duration is not specified" do
       it "should not execute the specified job" do
         job.should_not_receive :execute
 
         subject.schedule(clazz).in 1
+      end
+    end
+    context "when an 'every' duration is less than one" do
+      it "should raise an argument error" do
+        expect { subject.schedule(clazz).in(1).every 0 }.to raise_error ArgumentError, "an 'every' duration cannot be less than 1"
       end
     end
   end
