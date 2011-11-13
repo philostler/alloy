@@ -1,19 +1,20 @@
 require "alloy/version"
 
-require "alloy/poros/run"
-require "alloy/poros/schedule"
+require "alloy/poros/strategy"
+require "alloy/poros/run_strategy"
+require "alloy/poros/schedule_strategy"
 require "alloy/poros/size"
 
-require "alloy/core/base"
-require "alloy/core/run"
-require "alloy/core/schedule"
+require "alloy/core/executors"
+require "alloy/core/jobs"
 require "alloy/core/size"
+require "alloy/core/strategies"
 
 require "alloy/job/able"
 
 module Alloy
-  extend Alloy::Core::Base
-  extend Alloy::Core::Run
-  extend Alloy::Core::Schedule
+  extend Alloy::Core::Executors
+  extend Alloy::Core::Jobs
   extend Alloy::Core::Size
+  extend Alloy::Core::Strategies
 end
