@@ -7,7 +7,7 @@ describe Alloy::Poros::ScheduleStrategy do
 
   describe "#every" do
     it "should return the every duration" do
-      subject.should_receive(:strategy_formed).once
+      subject.stub :strategy_formed
 
       subject.every 5
 
@@ -16,7 +16,7 @@ describe Alloy::Poros::ScheduleStrategy do
 
     context "when a duration is specified" do
       it "should set the every duration" do
-        subject.should_receive(:strategy_formed).once
+        subject.stub :strategy_formed
 
         subject.every 7
 
