@@ -19,9 +19,6 @@ module Alloy
       end
 
       private
-      def strategy_formed
-        @strategy_formed_handler.call self
-      end
       def get_in
         @in
       end
@@ -29,6 +26,9 @@ module Alloy
         raise ArgumentError, "an 'in' duration cannot be less than 1" if duration < 1
 
         @in = duration
+      end
+      def strategy_formed
+        @strategy_formed_handler.call self
       end
     end
   end
