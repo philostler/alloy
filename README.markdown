@@ -1,6 +1,6 @@
 # Alloy
 
-Description
+Fluent interface for Java's Executor framework with added job handling ingredients.
 
 [RubyGems][ruby_gems] | [GitHub][github] | [Travis CI][travis_ci] | [RubyDoc][ruby_doc] | [Wiki][wiki]
 
