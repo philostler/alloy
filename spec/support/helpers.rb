@@ -9,19 +9,13 @@ def should_execute job
     end
 
     def once
-      while @job.execution_count.to_i < 1 && !timed_out
-        sleep 0.1
-      end
-      @job.execution_count.should be 1
+      sleep_until_execution_count 1
     end
     def seconds
       self
     end
     def twice
-      while @job.execution_count.to_i < 2 && !timed_out
-        sleep 0.1
-      end
-      @job.execution_count.should be 2
+      sleep_until_execution_count 2
     end
     def within duration
       @within = duration
@@ -30,8 +24,14 @@ def should_execute job
     end
 
     private
+    def sleep_until_execution_count count
+      while @job.execution_count.to_i < count && !timed_out
+        sleep 0.1
+      end
+      @job.execution_count.should be count
+    end
     def timed_out
-      true unless Time.now - @start_time < @within
+      Time.now - @start_time > @within
     end
   end.new job
 end
