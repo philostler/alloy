@@ -6,7 +6,7 @@ describe Alloy::Poros::RunStrategy do
   it { subject.should allow_public_access_for_methods :now }
 
   describe "#now" do
-    it "should invoke formed_strategy" do
+    it "should invoke strategy_formed" do
       subject.should_receive(:strategy_formed).once
 
       subject.now
