@@ -50,15 +50,15 @@ describe Alloy::Core::Strategies do
     it "should execute the specified job upon a seperate thread" do
       subject.should_receive(:create_job).once.and_return job
 
-      subject.schedule(clazz).every 1
+      subject.schedule(clazz).every 10
 
-      should_execute(job).twice
+      should_execute(job).once
       job.thread.id.should_not be this_thread.id
     end
     it "should execute the specified job once within the 'in' duration" do
       subject.should_receive(:create_job).once.and_return job
 
-      subject.schedule(clazz).in(1).every 60
+      subject.schedule(clazz).in(1).every 10
 
       should_execute(job).within(2).seconds.once
     end
