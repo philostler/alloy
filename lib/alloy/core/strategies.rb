@@ -13,7 +13,7 @@ module Alloy
 
       def execute_upon executor, job, in_duration = nil, every_duration = nil
         if every_duration
-          executor.schedule_at_fixed_rate job, in_duration, every_duration, UNITS
+          executor.schedule_at_fixed_rate job, in_duration.to_i, every_duration.to_i, UNITS
         else
           executor.submit job
         end
