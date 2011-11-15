@@ -9,9 +9,11 @@ module Alloy
       end
 
       private
+      UNITS = Java::java.util.concurrent.TimeUnit::SECONDS
+
       def execute_upon executor, job, in_duration = nil, every_duration = nil
         if every_duration
-          executor.schedule_at_fixed_rate job, in_duration, every_duration, Java::java.util.concurrent.TimeUnit::SECONDS
+          executor.schedule_at_fixed_rate job, in_duration, every_duration, UNITS
         else
           executor.submit job
         end
