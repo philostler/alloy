@@ -4,6 +4,10 @@ Object.const_set("Test", Class.new).const_set("Alloy", Class.new)
 # Test::Alloy::Core
 Test::Alloy.const_set("Core", Class.new)
 
+# Test::Alloy::Core::Config
+Test::Alloy::Core.const_set("Config", Class.new)
+Test::Alloy::Core::Config.send :extend, Alloy::Core::Config
+
 # Test::Alloy::Core::Size
 Test::Alloy::Core.const_set("Size", Class.new)
 Test::Alloy::Core::Size.send :extend, Alloy::Core::Size

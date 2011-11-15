@@ -5,6 +5,7 @@ require "alloy/poros/run_strategy"
 require "alloy/poros/schedule_strategy"
 require "alloy/poros/size"
 
+require "alloy/core/config"
 require "alloy/core/executors"
 require "alloy/core/jobs"
 require "alloy/core/size"
@@ -13,6 +14,7 @@ require "alloy/core/strategies"
 require "alloy/job/able"
 
 module Alloy
+  extend Alloy::Core::Config
   extend Alloy::Core::Executors
   extend Alloy::Core::Jobs
   extend Alloy::Core::Size
