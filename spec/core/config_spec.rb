@@ -11,5 +11,15 @@ describe Alloy::Core::Config do
         true
       end.should be_true
     end
+
+    context "when executing rake" do
+      it "should not execute the specified block" do
+        $0 = "rake"
+
+        subject.config do
+          true
+        end.should be_false
+      end
+    end
   end
 end
