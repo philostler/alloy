@@ -23,7 +23,7 @@ module Alloy
           clazz = strategy.clazz
           queue = get_queue clazz
           executor = get_executor queue
-          job = create_job clazz
+          job = create_job clazz, strategy.with
 
           execute_upon executor,
                        job,

@@ -20,6 +20,8 @@ describe Alloy::Poros::Strategy do
 
     context "when a duration is specified" do
       it "should set the in duration" do
+        subject.in.should be_nil
+
         subject.in 7
 
         subject.in.should be 7
@@ -32,6 +34,35 @@ describe Alloy::Poros::Strategy do
         it "should raise an argument error" do
           expect { subject.in 0 }.to raise_error ArgumentError, "an 'in' duration cannot be less than 1"
         end
+      end
+    end
+  end
+
+  describe "#with" do
+    let(:arguments) { ["argument1", 2, true] }
+
+    it "should return the arguments" do
+      subject.with *arguments
+
+      subject.with.should have(arguments.length).items
+      arguments.each do |argument|
+        subject.with.should include argument
+      end
+    end
+
+    context "when arguments are specified" do
+      it "should set the arguments" do
+        subject.with.should be_nil
+
+        subject.with *arguments
+
+        subject.with.should have(arguments.length).items
+        arguments.each do |argument|
+          subject.with.should include argument
+        end
+      end
+      it "should return itself" do
+        subject.with(*arguments).should be subject
       end
     end
   end

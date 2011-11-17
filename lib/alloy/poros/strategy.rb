@@ -17,6 +17,14 @@ module Alloy
           get_in
         end
       end
+      def with *arguments
+        unless arguments.empty?
+          set_with arguments
+          self
+        else
+          get_with
+        end
+      end
 
       private
       def get_in
@@ -26,6 +34,12 @@ module Alloy
         raise ArgumentError, "an 'in' duration cannot be less than 1" if duration < 1
 
         @in = duration
+      end
+      def get_with
+        @with
+      end
+      def set_with arguments
+        @with = arguments
       end
       def strategy_formed
         @strategy_formed_handler.call self

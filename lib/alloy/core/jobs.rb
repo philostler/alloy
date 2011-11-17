@@ -2,9 +2,11 @@ module Alloy
   module Core
     module Jobs
       private
-      def create_job clazz
+      def create_job clazz, arguments
         job = clazz.new
         job.class.send :include, Alloy::Job::Able
+
+        job.arguments = arguments
 
         job
       end
