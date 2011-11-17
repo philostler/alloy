@@ -18,6 +18,8 @@ describe Alloy::Poros::ScheduleStrategy do
       it "should set the every duration" do
         subject.stub :strategy_formed
 
+        subject.every.should be_nil
+
         subject.every 7
 
         subject.every.should be 7
