@@ -3,7 +3,7 @@ require "spec_helper"
 describe Alloy::Poros::ScheduleStrategy do
   subject { described_class.new nil, nil }
 
-  it { subject.should allow_public_access_for_methods :every }
+  it { subject.should allow_public_access_for_methods :every, :strictly, :strictly? }
 
   describe "#every" do
     it "should return the every duration" do
@@ -35,6 +35,25 @@ describe Alloy::Poros::ScheduleStrategy do
           expect { subject.every 0 }.to raise_error ArgumentError, "an 'every' duration cannot be less than 1"
         end
       end
+    end
+  end
+
+  describe "#strictly" do
+    it "should set the strictly boolean" do
+      subject.strictly
+
+      subject.instance_variable_get(:@strictly).should be_true
+    end
+    it "should return itself" do
+      subject.strictly.should be subject
+    end
+  end
+
+  describe "#strictly?" do
+    it "should return the strictly boolean" do
+      subject.strictly
+
+      subject.strictly?.should be_true
     end
   end
 end

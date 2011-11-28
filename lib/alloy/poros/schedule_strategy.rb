@@ -9,6 +9,13 @@ module Alloy
           get_every
         end
       end
+      def strictly
+        set_strictly true
+        self
+      end
+      def strictly?
+        get_strictly
+      end
 
       private
       def get_every
@@ -18,6 +25,12 @@ module Alloy
         raise ArgumentError, "an 'every' duration cannot be less than 1" if duration < 1
 
         @every = duration
+      end
+      def get_strictly
+        @strictly
+      end
+      def set_strictly strictly
+        @strictly = strictly
       end
     end
   end

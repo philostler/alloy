@@ -62,6 +62,14 @@ describe Alloy::Core::Strategies do
 
       should_execute(job).within(2).seconds.once
     end
+    it "should execute the specified job at a fixed delay" do
+      executor = double "Executor"
+
+      executor.should_receive(:schedule_with_fixed_delay)
+      subject.should_receive(:get_executor).and_return executor
+
+      subject.schedule(clazz).every 10
+    end
     it "should execute the specified job once within the 'every' duration" do
       subject.should_receive(:create_job).once.and_return job
 
@@ -82,6 +90,17 @@ describe Alloy::Core::Strategies do
     context "when an 'in' duration is less than one" do
       it "should raise an argument error" do
         expect { subject.schedule(clazz).in(0).every 1 }.to raise_error ArgumentError, "an 'in' duration cannot be less than 1"
+      end
+    end
+
+    context "when a 'strictly' is specified" do
+      it "should execute the specified job at a fixed rate" do
+        executor = double "Executor"
+
+        executor.should_receive(:schedule_at_fixed_rate)
+        subject.should_receive(:get_executor).and_return executor
+
+        subject.schedule(clazz).strictly.every 10
       end
     end
 
