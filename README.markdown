@@ -1,3 +1,5 @@
+# Alloy has been DEPRECATED and is no longer actively developed or maintained. This repository exists as a reference only.
+
 # Alloy
 
 Fluent interface for Java's Executor framework with added job handling ingredients.
